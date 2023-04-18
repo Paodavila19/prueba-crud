@@ -22,7 +22,7 @@ const App =()=>{
         <Routes>
           <Route exact path='/' element={<Listar/>}> </Route>
           <Route path='/crear' element={<Crear/>}> </Route>
-          <Route path='/editar' element={<Editar/>}> </Route>
+          <Route path='/editar/:id' element={<Editar/>}> </Route>
         </Routes>
     </div>
     </Router>

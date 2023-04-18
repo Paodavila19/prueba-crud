@@ -10,7 +10,19 @@ class Listar extends React.Component {
         empleados:[]
         }
     }
-    state = {  }
+    
+    borrarDatos =(id)=>{
+        const requestInit={
+            method: 'DELETE'
+        }
+        fetch("http://localhost:9000/users/" + id,requestInit) 
+        .then(respuesta=>respuesta.text())
+        .then((datosRespuesta)=>console.log(datosRespuesta))
+        this.cargarDatos();
+    }
+
+    
+
     cargarDatos(){
         fetch("http://localhost:9000/users") 
         .then(respuesta=>respuesta.json())
@@ -21,6 +33,8 @@ class Listar extends React.Component {
     componentDidMount(){
         this.cargarDatos();
     }
+
+    
     
     render() { 
         const{datosCargados, empleados}=this.state
@@ -55,8 +69,8 @@ class Listar extends React.Component {
 
                 <td>
                     <div className="btn-group" role="group" aria-label="">
-                        <Link  className="btn btn-warning" to={"/editar"}>Editar</Link>
-                        <button type="button" className="btn btn-danger">Borrar</button>
+                        <Link  className="btn btn-warning" to={"/editar"+empleado.id}>Editar</Link>
+                        <button onClick={()=> this.borrarDatos(empleado.id)} type="button" className="btn btn-danger">Borrar</button>
                     </div>
                 </td>
             </tr>)}

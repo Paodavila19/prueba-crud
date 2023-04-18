@@ -35,8 +35,9 @@ enviarDatos=(e)=>{
         body:   JSON.stringify(datosEnviar)
     }
     fetch("http://localhost:9000/users",requestInit) 
-    .then(respuesta=>respuesta.json())
-    .then((datosRespuesta)=>console.log(datosRespuesta))
+    .then(respuesta=>respuesta.text())
+    .then((datosRespuesta)=>console.log(datosRespuesta));
+    this.props.history.push("/");
 
     this.setState({name:"",
     id:"",
